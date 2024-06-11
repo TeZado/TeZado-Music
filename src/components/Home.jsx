@@ -49,6 +49,7 @@ export default function Home() {
     const searchini = document.getElementById("inputsongname").value
     searchini.replace(' ','+')
     setSearchInput(searchini)
+    console.log("sfs")
   }
    
     
