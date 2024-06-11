@@ -14,7 +14,7 @@ A Free music streaming site.
 
 ## Features
 
-- Light/dark mode toggle
+- Auto Light/dark mode based on system
 - Performance focused
 - Fullscreen mode
 - Optimized for multi-devices
