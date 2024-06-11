@@ -6,9 +6,15 @@ A Free music streaming site.
 
 
 
+
+## Try It!
+
+- [TeZado Music](https://tezadomusic.web.app/)
+
+
 ## Features
 
-- Light/dark mode with system settings
+- Light/dark mode toggle
 - Performance focused
 - Fullscreen mode
 - Optimized for multi-devices
