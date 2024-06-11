@@ -1,5 +1,4 @@
 import {useState } from 'react'
-import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import '../App.css'
 import '../AppS.sass'
@@ -32,7 +31,7 @@ export default function Home() {
     
     }
     const {data:songsData=""} = songId || {}
-    const {downloadUrl="",copyright} = songsData[0] || {}
+    const {downloadUrl=""} = songsData[0] || {}
     const {url:donwloadSongUrl=""} = downloadUrl[4] || []
     console.log(songsData)
     console.log(donwloadSongUrl)
@@ -41,7 +40,7 @@ export default function Home() {
     const {data} = search || {}
     const {songs} = data || {}
     const {results = "results is empty"} = songs || {}
-    const {description = "",image="" ,title="",url:jiourl="",id=""} = results[0] || {}
+    const {description = "",image="" ,url:jiourl="",id=""} = results[0] || {}
     const {url = "nourl"} = image[1] || {}
   
     
