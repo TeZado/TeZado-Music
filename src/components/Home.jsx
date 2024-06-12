@@ -1,58 +1,75 @@
-import {useState } from 'react'
+import {useEffect, useState} from 'react'
 import 'react-h5-audio-player/lib/styles.css';
 import '../App.css'
 import '../AppS.sass'
 import { TailSpin } from 'react-loader-spinner'
 import Player from './Player';
-import Suggestions from './Suggestions';
 
 
-export default function Home(props) {
+
+export default function Home() {
   let [search, setSearch] = useState([])
   let [songId, setSongId] = useState([])
+  let [playerImg,setPlayerImg]= useState()
+  let [playerName,setPlayerName]= useState()
+
+  let [playerUrl, setPlayerUrl] = useState()
   let [loader, setloader] = useState(false)
   let [suggestionId, setSuggestionId] = useState([])
-  const [searchInput,setSearchInput] = useState("Imagine+Dragons")
+  let [searchInput,setSearchInput] = useState("Imagine+Dragons")
 
-  const searchSongs = async  () => {
+//destructuring
+  let {data:songsData=""} = songId || {}
+  let {downloadUrl=""} = songsData[0] || {}
+  let {url:donwloadSongUrl=""} = downloadUrl[4] || []
+  console.log(songsData)
+  console.log(donwloadSongUrl)
+  
+
+
+  let {data} = search || {}
+  let {songs} = data || {}
+  let {results = "results is empty"} = songs || {}
+  let {description = "",image="" ,url:jiourl="",id="",title} = results[0] || {}
+  let {url:imgUrl = "nourl"} = image[1] || {}
+
+
+  //suggestion destrcuture
+  let {data:suggData=[]} = suggestionId || {}
+ let {name="",image:sugImage=""} = suggData[0] || {}
+ let {url:sugImg = "nourl"} = sugImage[1] || {}
+ let {downloadUrl:dwnUrlSgg=""} = suggData[0] || {}
+ let {url:suggSongUrl}= dwnUrlSgg[4] || {}
+
+ 
+
+
+
+  let searchSongs = async  () => {
     setloader(true)
     const songFetch = await fetch(`${import.meta.env.VITE_JIO_SAVAN}/search?query=${searchInput}`);
     setSearch(await songFetch.json())
+    setPlayerImg(imgUrl)
+    setPlayerName(title)
     setloader(false)
     console.log(songFetch)
     console.log("search result fetched succesfully")
     
     }
     
-    const suggestionsLoad = async ()=>{
-      const songFetch = await fetch(`${import.meta.env.VITE_JIO_SAVAN}/songs/${id}/suggestions`);
-      setSuggestionId(await songFetch.json())
+    let searchIdSongs = async  () => {
+      setPlayerUrl(donwloadSongUrl)
+      const songIdFetch = await fetch(`${import.meta.env.VITE_JIO_SAVAN}/songs/${id}`);
+      setSongId(await songIdFetch.json())
+      const suggestionFetch = await fetch(`${import.meta.env.VITE_JIO_SAVAN}/songs/${id}/suggestions`);
+      setSuggestionId(await suggestionFetch.json())
       console.log(suggestionId)
-      console.log(id)
-      }
- 
-  const searchIdSongs = async  () => {
-    const songIdFetch = await fetch(`${import.meta.env.VITE_JIO_SAVAN}/songs/${id}`);
-    setSongId(await songIdFetch.json())
-    console.log(songIdFetch)
-    console.log("songID result fetched succesfully")
+      console.log(songIdFetch)
+      console.log("songID result fetched succesfully")
     
     }
-    const {data:songsData=""} = songId || {}
-    const {downloadUrl=""} = songsData[0] || {}
-    const {url:donwloadSongUrl=""} = downloadUrl[4] || []
-    console.log(songsData)
-    console.log(donwloadSongUrl)
-
-
-    const {data} = search || {}
-    const {songs} = data || {}
-    const {results = "results is empty"} = songs || {}
-    const {description = "",image="" ,url:jiourl="",id=""} = results[0] || {}
-    const {url = "nourl"} = image[1] || {}
-  
-  
-
+   
+    
 
   const inputSearch = ()=>{
     const searchini = document.getElementById("inputsongname").value
@@ -60,11 +77,10 @@ export default function Home(props) {
     setSearchInput(searchini)
     console.log("sfss")
   }
-   const callDoubel=()=>{
-    suggestionsLoad()
-    searchSongs()
 
-   }
+ 
+
+   
     
      
     return (
@@ -77,7 +93,7 @@ export default function Home(props) {
        <input id='inputsongname' type="text" onChange={inputSearch} placeholder='Enter Song Name'/>
     
    <br /> <br />
-    <button onClick={callDoubel}>search</button> <br /> <br />
+    <button  onClick={searchSongs}>search</button> <br /> <br />
     <TailSpin
   visible={loader}
   height="80"
@@ -88,12 +104,23 @@ export default function Home(props) {
   wrapperStyle={{}}
   wrapperClass=""
   />
-    <img src={url} alt="" /> <br />
-    <h3>{description}</h3>
+    <img src={playerImg} alt="" /> <br />
+    <h3>{playerName}</h3>
     <button onClick={searchIdSongs}>Play</button>
      <br /> <br />
     
-<Player songulr={donwloadSongUrl}/>
+<Player songulr={playerUrl}/>
+
+
+  <h3>Suggestions</h3>
+<div>
+        {suggData.map(({id, name, type, year, releaseDate, duration, label, explicitContent, playCount, language, hasLyrics, lyricsId, url, copyright, album, artists, image, downloadUrl}) => (
+       
+ <button key={id} className='suggSection'  onClick={()=> setPlayerUrl(downloadUrl[4].url)}><img src={image[1].url} alt="" onClick={()=>{setPlayerName(name),setPlayerImg(image[1].url)}} /><br></br> {name.slice(0, 15)}</button>
+
+      
+        ))}
+      </div>
 
 
 
