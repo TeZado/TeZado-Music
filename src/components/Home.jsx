@@ -4,12 +4,14 @@ import '../App.css'
 import '../AppS.sass'
 import { TailSpin } from 'react-loader-spinner'
 import Player from './Player';
+import Suggestions from './Suggestions';
 
 
-export default function Home() {
+export default function Home(props) {
   let [search, setSearch] = useState([])
   let [songId, setSongId] = useState([])
   let [loader, setloader] = useState(false)
+  let [suggestionId, setSuggestionId] = useState([])
   const [searchInput,setSearchInput] = useState("Imagine+Dragons")
 
   const searchSongs = async  () => {
@@ -22,6 +24,12 @@ export default function Home() {
     
     }
     
+    const suggestionsLoad = async ()=>{
+      const songFetch = await fetch(`${import.meta.env.VITE_JIO_SAVAN}/songs/${id}/suggestions`);
+      setSuggestionId(await songFetch.json())
+      console.log(suggestionId)
+      console.log(id)
+      }
  
   const searchIdSongs = async  () => {
     const songIdFetch = await fetch(`${import.meta.env.VITE_JIO_SAVAN}/songs/${id}`);
@@ -43,15 +51,20 @@ export default function Home() {
     const {description = "",image="" ,url:jiourl="",id=""} = results[0] || {}
     const {url = "nourl"} = image[1] || {}
   
-    
+  
+
 
   const inputSearch = ()=>{
     const searchini = document.getElementById("inputsongname").value
     searchini.replace(' ','+')
     setSearchInput(searchini)
-    console.log("sfs")
+    console.log("sfss")
   }
-   
+   const callDoubel=()=>{
+    suggestionsLoad()
+    searchSongs()
+
+   }
     
      
     return (
@@ -64,7 +77,7 @@ export default function Home() {
        <input id='inputsongname' type="text" onChange={inputSearch} placeholder='Enter Song Name'/>
     
    <br /> <br />
-    <button onClick={searchSongs}>search</button> <br /> <br />
+    <button onClick={callDoubel}>search</button> <br /> <br />
     <TailSpin
   visible={loader}
   height="80"
@@ -81,6 +94,9 @@ export default function Home() {
      <br /> <br />
     
 <Player songulr={donwloadSongUrl}/>
+
+
+
  <footer>This site does not store any files on our server, we only linked to the media which is hosted on 3rd party services.</footer>
 {/* <button><a href={jiourl} target='blank'>JIOSAVAN</a></button> */} <br />
 <a href="https://buymeacoffee.com/tezado" target='blank'><button>Support Us</button></a>
