@@ -1,14 +1,22 @@
-import  { Component } from 'react'
+import {useState } from 'react'
 
-export default class Suggestions extends Component {
 
-    async componentDidMount(){
-        console.log("suggestions")
-
+export default function Suggestions(songid) {
+  
+  let [suggestionId, setSuggestionId] = useState([])
+ const suggestionsLoad = async ()=>{
+    const songFetch = await fetch(`${import.meta.env.VITE_JIO_SAVAN}/songs/${ido}/suggestions`);
+    setSuggestionId(await songFetch.json())
+    console.log(suggestionId)
+    console.log(ido)
     }
-  render() {
-    return (
-      <div>Suggestions</div>
-    )
-  }
+
+  
+
+  
+  return (
+    <>
+   <button onClick={suggestionsLoad}>sugg</button>
+    </>
+  )
 }
