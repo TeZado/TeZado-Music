@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import 'react-h5-audio-player/lib/styles.css';
 import '../App.css'
 import '../AppS.sass'
@@ -86,8 +86,8 @@ export default function Home() {
     return (
     <>
     <h1>TeZado Music</h1>
-    <h5>v 0.1.12</h5>
-    <h6>Last updated on 06-10-24</h6>
+    <h5>v 0.1.16</h5>
+    <h6>Last updated on 13-06-24</h6>
 
 
        <input id='inputsongname' type="text" onChange={inputSearch} placeholder='Enter Song Name'/>
