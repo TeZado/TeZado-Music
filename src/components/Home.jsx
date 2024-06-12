@@ -117,7 +117,7 @@ export default function Home() {
 <div>
         {suggData.map(({id, name, type, year, releaseDate, duration, label, explicitContent, playCount, language, hasLyrics, lyricsId, url, copyright, album, artists, image, downloadUrl}) => (
        
- <button key={id} className='suggSection'  onClick={()=> setPlayerUrl(downloadUrl[4].url)}><img src={image[1].url} alt="" onClick={()=>{setPlayerName(name),setPlayerImg(image[1].url)}} /><br></br> {name.slice(0, 15)}</button>
+ <button key={id} className='suggSection'  onClick={()=> setPlayerUrl(downloadUrl[4].url)}><img className='sugImg' src={image[1].url} alt="" onClick={()=>{setPlayerName(name),setPlayerImg(image[1].url)}} /><br></br> {name.slice(0, 15)}</button>
 
       
         ))}

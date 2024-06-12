@@ -50,6 +50,11 @@
 .suggSection{
   display: inline;
   flex-direction: column;
+  width: 160px;
+margin: 1px;
+}
+.sugImg{
+  width: 120px;
 }
 
 .warrning{

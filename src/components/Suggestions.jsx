@@ -7,8 +7,7 @@ export default function Suggestions(songid) {
  const suggestionsLoad = async ()=>{
     const songFetch = await fetch(`${import.meta.env.VITE_JIO_SAVAN}/songs/${ido}/suggestions`);
     setSuggestionId(await songFetch.json())
-    console.log(suggestionId)
-    console.log(ido)
+
     }
 
   
