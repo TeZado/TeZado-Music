@@ -88,12 +88,13 @@ export default function Home() {
     <h1>TeZado Music</h1>
     <h5>v 0.1.16</h5>
     <h6>Last updated on 13-06-24</h6>
+    <span className='warrning'>Bug:</span> <span className='warrinfo' >PLzz double tap on Search & Play Button👻</span> <br /> <br />
 
 
        <input id='inputsongname' type="text" onChange={inputSearch} placeholder='Enter Song Name'/>
     
    <br /> <br />
-    <button  onClick={searchSongs}>search</button> <br /> <br />
+    <button  onClick={searchSongs}>Search</button> <br /> <br />
     <TailSpin
   visible={loader}
   height="80"
