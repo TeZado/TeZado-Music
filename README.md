@@ -7,10 +7,6 @@ A Free music streaming site.
 
 
 
-## Try It!
-
-- [TeZado Music](https://tezadomusic.web.app/)
-
 
 ## Features
 
