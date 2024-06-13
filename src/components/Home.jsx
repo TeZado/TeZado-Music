@@ -32,7 +32,7 @@ export default function Home() {
       document.getElementById("sugSection").style.display = "none";
       document.getElementById("sugSection1").style.display = "none";
       document.getElementById("searchId").style.display = "inline-block";
-      document.getElementById("searchId1").style.display = "inline-block";
+      document.getElementById("searchId1").style.display = "block";
       }
     
     let searchIdSongs = async  () => {
@@ -47,7 +47,7 @@ export default function Home() {
       
       
       const inputSearch = ()=>{
-        const searchini = document.getElementById("inputsongname").value
+        const searchini = document.getElementById("query").value
         searchini.replace(' ','+')
          setSearchInput(searchini)
     
@@ -70,7 +70,7 @@ export default function Home() {
      let {songs} = data || {}
      let {results = "results is empty"} = songs || {}
      let {description = "",image={},id="",title} = results[0] || {}
-     let {url:imgUrl = ""} = image[1] || {}
+     let {url:imgUrl = ""} = image[2] || {}
    
      
     
@@ -84,14 +84,31 @@ export default function Home() {
 
 
 <h1>TeZado Music</h1>
-    <h5>v 0.1.20</h5>
+    <h5>v 2.0</h5>
     <h6>Last updated on 13-06-24</h6>
-    <span className='warrning'>Version:</span> <span className='warrinfo' >Stable</span> <br /> <br />
 
 
-       <input id='inputsongname' type="text" onChange={inputSearch} placeholder='Enter Song Name'/>
+    <div className="group">
+  <svg viewBox="0 0 24 24" aria-hidden="true" className="search-icon">
+    <g>
+      <path
+        d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+      ></path>
+    </g>
+  </svg>
+
+  <input
+    id="query"
+    className="input"
+    type="search"
+    placeholder="Enter Song Name"
+    name="searchbar"
+    onChange={inputSearch}
+  />
+</div>
+      
     
-   <br /> <br />
+  
     <button   onClick={searchSongs}>Search</button> <br /> <br />
     <div className='loaderr1'>
     <Audio 
@@ -106,13 +123,16 @@ export default function Home() {
   />
 
     </div>
-    <img id='sugSection' src={playerImg} alt="" /> <br />
+    <div className='playerOutline'>
+   <img id='sugSection' src={playerImg} alt="" /> <br />
     <img id='searchId' src={imgUrl} alt="" /> <br />
-    <h3 id='sugSection1'>{playerName}</h3> <br />
-    <h3 id='searchId1'>{title}</h3> <br />
-    <button onClick={searchIdSongs}>Load Track</button>
-    <button onClick={searchIdSongs}>Play</button>
+    <span id='sugSection1'>{playerName}</span> 
+    <span id='searchId1'>{title}</span> 
+    <button className='btnLoad' onClick={searchIdSongs}>Load Track</button>
+    <button className='btnLoad' onClick={searchIdSongs}>Play</button>
      <br /> <br />
+    </div>
+ 
     
 <Player songulr={playerUrl}/>
 
@@ -122,8 +142,8 @@ export default function Home() {
 <div>
         {suggData.map(({id, name, type, year, releaseDate, duration, label, explicitContent, playCount, language, hasLyrics, lyricsId, url, copyright, album, artists, image, downloadUrl}) => (
        
- <button key={id} className='suggSection'  ><img  className='sugImg' src={image[1].url} onClick={()=>{setPlayerName(name),setPlayerImg(image[1].url), setPlayerUrl(downloadUrl[4].url), document.getElementById("sugSection").style.display = "inline-block";
-  document.getElementById("sugSection1").style.display = "inline-block";document.getElementById("searchId").style.display = "none";
+ <button key={id} className='suggSection'  ><img  className='sugImg' src={image[2].url} onClick={()=>{setPlayerName(name),setPlayerImg(image[2].url), setPlayerUrl(downloadUrl[4].url), document.getElementById("sugSection").style.display = "inline-block";
+  document.getElementById("sugSection1").style.display = "block";document.getElementById("searchId").style.display = "none";
   document.getElementById("searchId1").style.display = "none";}
   }  alt=""  /><br></br> {name.slice(0, 15)}</button>
 
