@@ -3,20 +3,17 @@
 @tailwind utilities;
 
 
-
+html{
+  padding: 0px;
+  margin: 0px;
+}
 #root {
-  max-width: 1280px;
+ 
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
@@ -58,9 +55,34 @@ margin: 1px;
 }
 
 .warrning{
-color: red;
+color: rgb(255, 255, 255);
 font-size: 11px;
 }
 .warrinfo{
   font-size: 11px;
 }
+.loaderr1{
+  margin: auto;
+}
+
+.playerr{
+  display: block;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+margin: 0px;
+padding: 0px;
+margin-right: 220px;
+  
+
+}
+.appBox{
+  padding: 0px;
+  margin: 0px;
+}
+
+.Foootor{
+  margin-bottom: 120px;
+}
+

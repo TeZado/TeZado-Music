@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import {useState } from 'react'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import '../App.css'
@@ -12,7 +11,10 @@ export default class Player extends Component {
     let{songulr}=this.props;
     return (
       <>
-       <AudioPlayer  loop showDownloadProgress autoPlay src={songulr} />
+     
+        <AudioPlayer className='playerr' loop showDownloadProgress autoPlay src={songulr} />
+   
+       
       </>
     )
   }
