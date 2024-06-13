@@ -32,7 +32,7 @@ Clone my-project with git
 Create .env file and add your api. 
 ## Screenshots
 
-![App Screenshot](https://github.com/TeZado/TeZado-Music/blob/main/src/assets/Screenshot%202024-06-12%20000549.png)
+![App Screenshot](https://github.com/TeZado/TeZado-Music/blob/main/src/assets/Screenshot%202024-06-13%20203654.png)
 
 
 ## Tech Stack
