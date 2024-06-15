@@ -21,7 +21,7 @@ A Free music streaming site.
 Clone my-project with git
 
 ```bash
-  git clone git@github.com:TeZado/TeZado-Music.git
+  git clone git@github.com:TeZado/TeZado-Music.git my-project
   cd my-project
 ```
 ```bash
